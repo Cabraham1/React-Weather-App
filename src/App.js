@@ -1,26 +1,31 @@
 import React, { useState } from 'react';
-const api = {
-  key: '833d1728664eb4e79cf6ca955167067a',
-  base: 'https://api.openweathermap.org/data/2.5'
-}
-function App() {
-  const [query, setQuery] = useState('');
-  const [weather, setWeather] = useState({});
-  const search = evt =>{
-    if( evt === 'Enter') {
-      fetch(`$(api.base)weather?q=${query}&units=metric&APPID=${api.key}`)
-      .then(res => res.json())
-      .then(result => {
-        setWeather(result)});
-        setQuery('');
-        console.log(result);
-    }
-  }
+import Axios from 'axios';
 
+
+
+// Language: javascript
+function App() {
+  
+
+    const [city, setCity] = useState("");
+    const [weatherData, setWeatherData] = useState({});
+
+    const api = '833d1728664eb4e79cf6ca955167067a'
+
+   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api}`;
+   const Search = (event) => {
+     if (event.key === 'Enter') {
+       Axios.get(url).then(res => {
+         setWeatherData(res.data);
+         console.log(res.data);
+       });
+       setCity("");
+     }
+    }
 
   const dateBuilder = (d) => {
-    let months = ['January', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-    let days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     let day = days[d.getDay()];
     let date = d.getDate();
@@ -33,27 +38,41 @@ function App() {
     <div className="app sunny">
       <main>
         <div className="search_box">
-          <input type="text" className='search_bar' placeholder='Search...' name='search'
-          onChange={e => setQuery(e.target.value)}
-          value={query}
-          onKeyDown={search}/>
+          <input type="text" className='search_bar' placeholder='Search...'
+          value={city}
+          onChange={event => setCity(event.target.value)}
+          onKeyPress={Search} />
         </div>
         <div className="location_box">
-          <div className="location">New York City, US</div>
-          <div className="date">{dateBuilder(new Date())}</div>
+          <div className="location">
+            {weatherData.name}
+          </div>
+          <div className="date">{dateBuilder (new Date())}</div>
         </div>
         <div className="weather_box">
           <div className="temp">
-            15°c
+            {weatherData.main ? <p>{Math.round(weatherData.main.temp - 274.15) }<span>°C</span></p> : <p>Enter location</p>}
           </div>
           <div className="weather">
-            Sunny
+            {weatherData.main ? <p>{weatherData.weather[0].main}</p> : <p>Loading...</p>}
+          </div>
+        </div>
+        <div className='bottom__card'>
+          <div className='feels'>
+            {weatherData.main ? <p>Feels like: {Math.round(weatherData.main.feels_like - 274.15)}°C</p> : <p>Loading...</p>}
+          
+          </div>
+          <div className="Humidity">
+            {weatherData.main ? <p>Humidity: {weatherData.main.humidity}%</p> : <p>Loading...</p>}
+          
+          </div>
+          <div className="Wind">
+            {weatherData.wind ? <p>Wind: {weatherData.wind.speed} MPH</p> : <p>Loading...</p>}
+          
           </div>
         </div>
       </main>
     </div>
   );
 }
-
-
 export default App;
