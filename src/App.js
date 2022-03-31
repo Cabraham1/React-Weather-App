@@ -45,7 +45,7 @@ function App() {
         </div>
         <div className="location_box">
           <div className="location">
-            {weatherData.name}
+            {weatherData.name}, { weatherData.sys && weatherData.sys.country}
           </div>
           <div className="date">{dateBuilder (new Date())}</div>
         </div>
@@ -59,16 +59,16 @@ function App() {
         </div>
         <div className='bottom__card'>
           <div className='feels'>
-            {weatherData.main ? <p>Feels like: {Math.round(weatherData.main.feels_like - 274.15)}°C</p> : <p>Loading...</p>}
+            {weatherData.main ? <p>{Math.round(weatherData.main.feels_like - 274.15)}°C <br />Feels like</p> : <p>Loading...</p>}
           
           </div>
           <div className="Humidity">
-            {weatherData.main ? <p>Humidity: {weatherData.main.humidity}%</p> : <p>Loading...</p>}
+            {weatherData.main ? <p>{weatherData.main.humidity}% <br />Humidity</p> : <p>Loading...</p>}
           
           </div>
           <div className="Wind">
-            {weatherData.wind ? <p>Wind: {weatherData.wind.speed} MPH</p> : <p>Loading...</p>}
-          
+            {weatherData.wind ? <p>{weatherData.wind.speed} MPH <br /> Wind Speed</p> : <p>Loading...</p>}
+      
           </div>
         </div>
       </main>
