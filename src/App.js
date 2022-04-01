@@ -35,7 +35,11 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   }
   return (
-    <div className="app sunny">
+    <div className={(typeof weatherData.main != "undefined")
+    ? ((weatherData.main.temp - 274   > 16 )
+    ? 'app sunny' 
+    : 'app')
+    : 'app'}>
       <main>
         <div className="search_box">
           <input type="text" className='search_bar' placeholder='Search...'

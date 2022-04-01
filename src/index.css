@@ -13,15 +13,15 @@
  }
 
  .app{
-   background-image: url('./assets/warm_bg.jpg');
+   background-image: url('./assets/1647769873868.jpg');
    background-repeat: no-repeat;
    background-size: cover;
    background-position: bottom;
-   transition: 0.4 ease-out;
+   transition: 0.9 ease-out;
  }
 
  .app.sunny{
-   background-image: url('./assets/sunny_bg.jpg');
+   background-image: url('./assets/1647769842187.jpg');
  }
 
  main{
