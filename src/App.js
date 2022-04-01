@@ -22,6 +22,13 @@ function App() {
        setCity("");
      }
     }
+    const Search1 = (event) => { 
+      Axios.get(url).then(res => {
+        setWeatherData(res.data);
+        console.log(res.data);
+      });
+      setCity("");
+    }
 
   const dateBuilder = (d) => {
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -46,6 +53,7 @@ function App() {
           value={city}
           onChange={event => setCity(event.target.value)}
           onKeyPress={Search} />
+          <button type="Enter" onClick={Search1} value='Enter' className='Enter__box'>Enter</button>
         </div>
         <div className="location_box">
           <div className="location">

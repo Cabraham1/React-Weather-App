@@ -34,7 +34,21 @@
    width: 100%;
    margin: 0 0 75px;
  }
-
+ .Enter__box{
+    width: 5rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #000;
+    margin-top: 1rem;
+ }
+ .Enter__box:hover{
+    background-color: #fff;
+    color: #000;
+ }
  .search_box .search_bar{
    display: block;
    width: 100%;
@@ -121,4 +135,53 @@
    color: #fff;
    text-align: center;
    font-weight: 700;
+ }
+
+ @media screen and (min-width: 1280px) {
+  .Enter__box{
+     display: none;
+   }
+   
+ }
+
+ @media screen and (max-width: 600px){
+   .app{
+     background-image: url('./assets/1647769842187.jpg');
+   }
+   .search_box{
+     margin: 0 0 25px;
+   }
+   .search_box .search_bar{
+     margin-top: -15px;
+   }
+   .location_box .location{
+     font-size: 24px;
+   }
+   .location_box .date{
+     font-size: 16px;
+   }
+   .weather_box .temp{
+     font-size: 72px;
+   }
+   .weather_box .weather{
+     font-size: 32px;
+   }
+   .bottom__card{
+     flex-direction: column;
+     justify-content: center;
+     text-align: center;
+     width: 100%;
+     margin: 1rem auto;
+     padding: 1rem;
+     border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    font-size: 12px;
+   }
+   .bottom__card p{
+     font-size: large;
+     text-shadow: 3px 3px rgba(50, 50, 70, 50);
+     color: #fff;
+     text-align: center;
+     font-weight: 700;
+   }
  }
